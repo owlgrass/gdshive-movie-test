@@ -28,12 +28,6 @@
 		0 4px 25px -6px hsla(0, 0%, 0%, .2), 
 		0 12px 8px -10px hsla(0, 0%, 0%, .5);
 
-
-	/* Media query breakpoints */
-	--breakpoint-sm: 500px;
-	--breakpoint-md: 700px;
-	--breakpoint-lg: 1200px;
-
 }
 
 body {
