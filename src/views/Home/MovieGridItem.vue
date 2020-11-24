@@ -1,7 +1,8 @@
 <template>
-	<a 
+	<router-link
 		class="movie-grid-item" 
 		v-if="typeof movie === 'object' && movie.name"
+		:to="movie.name"
 	>
 
 		<div class="image-container">
@@ -17,7 +18,7 @@
 			<div class="synopsis" v-html="movie.synopsisShort"></div>
 		</div>
 
-	</a>
+	</router-link>
 </template>
 
 <script>
@@ -40,7 +41,10 @@ export default {
 
 .movie-grid-item {
 	padding: 1em;
-	cursor: pointer;
+
+	/* Override default CSS */
+	color: inherit;
+	text-decoration: inherit;
 
 	/* Disable Android's blue highlight on touch */
 	-webkit-tap-highlight-color: transparent;
