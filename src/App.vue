@@ -18,8 +18,15 @@
 	--main-color-active: hsl(0, 0%, 50%);
 	--main-color: hsl(0, 0%, 80%);
 	--main-color-disabled: hsl(0, 0%, 95%);
-	
+
 	--main-background: white;
+
+	--box-shadow-hover:
+		0 5px 10px -3px hsla(0, 0%, 0%, .2), /* ambient shadow */
+		0 6px 6px -8px hsla(0, 0%, 0%, .2); /* cast shadow */
+	--box-shadow-focus:
+		0 4px 25px -6px hsla(0, 0%, 0%, .2), 
+		0 12px 8px -10px hsla(0, 0%, 0%, .5);
 
 
 	/* Media query breakpoints */
@@ -30,7 +37,7 @@
 }
 
 body {
-	max-width: var(--breakpoint-md);
+	max-width: 900px;
 	margin: 0 auto;
 
 	font-size: 0.875rem; /* 14px. Browser typical :root font-size is 16px */

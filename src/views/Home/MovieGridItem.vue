@@ -1,0 +1,126 @@
+<template>
+	<a 
+		class="movie-grid-item" 
+		v-if="typeof movie === 'object' && movie.name"
+	>
+
+		<div class="image-container">
+			<!-- TODO: image here -->
+		</div>
+
+		<div class="descriptions">
+			<h2>{{ movie.name }}</h2>
+			<div class="tags">
+				<span v-text="movie.productionYear"></span>
+				<span v-text="movie.genre"></span>
+			</div>
+			<div class="synopsis" v-html="movie.synopsisShort"></div>
+		</div>
+
+	</a>
+</template>
+
+<script>
+export default {
+	name: 'MovieGridItem',
+	props: {
+		movie: {
+			default: () => {}
+		}
+	},
+	data() {
+		return {
+			
+		}
+	},
+}
+</script>
+
+<style scoped>
+
+.movie-grid-item {
+	padding: 1em;
+	cursor: pointer;
+
+	/* Disable Android's blue highlight on touch */
+	-webkit-tap-highlight-color: transparent;
+
+	height: 10em;
+	width: 100%;
+	box-sizing: border-box;
+
+	/* Flush children to left and right */
+	display: flex;
+}
+
+@media (min-width: 600px) {
+	.movie-grid-item {
+		width: calc(100% / 2);
+	}
+}
+@media (min-width: 900px) {
+	.movie-grid-item {
+		width: calc(100% / 3);
+	}
+}
+
+
+.image-container {
+	width: 5em;
+	height: 100%;
+	background: repeating-linear-gradient(
+		45deg, 
+		var(--accent-color-light), var(--accent-color-light) 2px, 
+		transparent 2px, transparent 4px
+	);
+
+	flex-shrink: 0; /* prevents width shrinking */
+}
+
+/* For non-touchscreen devices */
+@media (hover: hover) {
+	.movie-grid-item:hover .image-container {
+		box-shadow: var(--box-shadow-hover);
+	}
+}
+
+
+.descriptions {
+	height: 100%;
+	overflow: hidden;
+	padding-left: 1em;
+}
+
+
+
+
+h2 {
+	margin: 0;
+	font-size: 1.25em;
+}
+
+.synopsis {
+
+	/* Clamp to 3 lines of text */
+	line-height: 1.4;
+	font: 1em;
+	height: calc(1.4 * 3em);
+	overflow: hidden;
+
+	/* Show ellipses at line 3 when overflow */
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+
+}
+
+
+.tags {
+	color: var(--main-color);
+}
+.tags span {
+	margin-right: 1em;
+}
+
+
+</style>

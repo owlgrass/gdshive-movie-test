@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style scoped>
-.home {
+.home > header {
 	padding: 1em;
 }
 </style>

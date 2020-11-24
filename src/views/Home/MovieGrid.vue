@@ -10,7 +10,7 @@
 			Fetching...
 		</div>
 
-		<MovieGridMovie 
+		<MovieGridItem 
 			v-else
 			class="grid-item"
 			v-for="movie in movies" 
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import MovieGridMovie from './MovieGridMovie'
+import MovieGridItem from './MovieGridItem'
 
 export default {
 	name: 'MovieGrid',
@@ -68,12 +68,15 @@ export default {
 		this.fetchData()
 	},
 	components: {
-		MovieGridMovie
+		MovieGridItem
 	}
 }
 </script>
 
 <style scoped>
 .movie-grid {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
 </style>
