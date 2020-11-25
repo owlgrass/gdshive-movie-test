@@ -1,7 +1,7 @@
 <template>
 	<div class="home">
 		<header>
-			<YearSelect v-model="inputs.selectedYear" :options="[2000, 2014]"/>
+			<YearSelect v-model="inputs.yearSelected" :options="[2000, 2014]"/>
 		</header>
 
 		<div v-if="status.error" class="error">
@@ -25,8 +25,9 @@ export default {
 	data() {
 		return {
 			inputs: {
-				selectedYear: undefined,
-				selectedGenre: undefined
+				yearSelected: undefined,
+				yearsAvailable: [],
+				genreSelected: undefined
 			},
 			status: {
 				loading: false,
