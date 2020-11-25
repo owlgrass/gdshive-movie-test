@@ -45,6 +45,7 @@ export default {
 			return [...new Set(years)]	// Removes all duplicate years
 		},
 
+		// Returns the Array of movies after applying all filters, this is displayed in the grid
 		moviesFiltered() {
 			let movies = this.movies
 
