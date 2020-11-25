@@ -5,17 +5,18 @@ const fetchMovieData = async function() {
 
 	const response = await fetch(request)
 	if (!response.ok) {
-		throw `API server request failed with ${response.status}`
+		throw `API server request failed (status code ${response.status})`
 	}
+
 
 	const movies = await response.json()
 
-	// Ensure movies is Array and has name property
+	// Ensure movies is Array and each movie has name property
 	if (
 		!Array.isArray(movies) ||
 		!movies.every(m => m.name)
 	) {
-		throw 'Data invalid'
+		throw 'Invalid data returned from server'
 	}
 
 
