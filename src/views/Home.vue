@@ -1,7 +1,7 @@
 <template>
 	<div class="home">
 		<header>
-			<YearSelect v-model="inputs.selectedYear" :options="[2000, 2014]"/>
+			<YearSelect v-model="inputs.selectedYear" :options="availableYears"/>
 		</header>
 
 		<div v-if="status.error" class="error">
@@ -10,7 +10,7 @@
 		<div v-else-if="status.loading" class="loading">
 			Fetching movies...
 		</div>
-		<MovieGrid v-else :movies="movies" />
+		<MovieGrid v-else :movies="moviesFiltered" />
 
 	</div>
 </template>
@@ -33,6 +33,26 @@ export default {
 				error: false,
 			},
 			movies: []
+		}
+	},
+	computed: {
+		// Returns the Array of productionYear that is present in this.movies dataset
+		availableYears() {
+			const years = this.movies
+				.map(m => m.productionYear)
+				.sort((a,b) => a - b) // Sort in accending order (assumes year is Number)
+
+			return [...new Set(years)]	// Removes all duplicate years
+		},
+
+		moviesFiltered() {
+			let movies = this.movies
+
+			if (this.inputs.selectedYear) {
+				movies = movies.filter(m => m.productionYear == this.inputs.selectedYear)
+			}
+
+			return movies
 		}
 	},
 	methods: {

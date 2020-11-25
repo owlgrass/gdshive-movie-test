@@ -3,7 +3,7 @@
 		<YearSelect v-model="selectedYear" :options="[2012, 2011, 2014]" />
  -->
 <template>
-	<select value="value" @input="$emit('input', value)">
+	<select :value="value" @input="$emit('input', $event.target.value)">
 		<option v-for="o in options" v-text="o" :key="o"></option>
 	</select>
 </template>
@@ -21,9 +21,6 @@ export default {
 		value: {
 			requried: true
 		}
-	},
-	computed: {
-
 	},
 	data() {
 		return {
