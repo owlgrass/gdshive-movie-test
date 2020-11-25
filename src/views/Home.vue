@@ -6,6 +6,11 @@
 				:options="availableYears"
 				undefinedOptionName="all years"
 			/>
+			<vSelect 
+				v-model="inputs.selectedGenre" 
+				:options="availableGenres"
+				undefinedOptionName="all genres"
+			/>
 		</header>
 
 		<div v-if="status.error" class="error">
@@ -56,12 +61,16 @@ export default {
 			return Array.from(new Set(genres))	// Removes all duplicate years
 		},
 
-		// Returns the Array of movies after applying all filters, this is displayed in the grid
+		// Returns the Array of movies after applying all filters, 
+		// this is displayed in the movie grid
 		moviesFiltered() {
 			let movies = this.movies
 
 			if (this.inputs.selectedYear) {
 				movies = movies.filter(m => m.productionYear == this.inputs.selectedYear)
+			}
+			if (this.inputs.selectedGenre) {
+				movies = movies.filter(m => m.genre == this.inputs.selectedGenre)
 			}
 
 			return movies
