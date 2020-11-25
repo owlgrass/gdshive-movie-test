@@ -16,7 +16,7 @@
 	--accent-color-active: hsl(180, 60%, 50%);
 
 	--main-color-active: hsl(0, 0%, 50%);
-	--main-color: hsl(0, 0%, 80%);
+	--main-color: hsl(0, 0%, 10%);
 	--main-color-disabled: hsl(0, 0%, 95%);
 
 	--main-background: white;
@@ -37,5 +37,8 @@ body {
 	font-size: 0.875rem; /* 14px. Browser typical :root font-size is 16px */
 	font-family: "arial", sans-serif;
 	line-height: 1.4;
+
+	color: var(--main-color);
+	background: var(--main-background);
 }
 </style>
