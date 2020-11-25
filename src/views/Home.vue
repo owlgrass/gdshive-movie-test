@@ -38,7 +38,7 @@ export default {
 		fetchData() {
 			this.status.loading = true
 
-			fetchMovieData()
+			fetchMovieData('https://sometimes-maybe-flaky-api.gdshive.io/')
 				.then(movies => this.allMovies = movies)
 				.catch(error => {
 					this.status.error = error

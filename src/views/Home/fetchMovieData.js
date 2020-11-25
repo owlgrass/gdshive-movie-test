@@ -1,8 +1,7 @@
 
 
-const fetchMovieData = async function() {
-	const request = 'https://sometimes-maybe-flaky-api.gdshive.io/'
-
+const fetchMovieData = async function(request) {
+	
 	const response = await fetch(request)
 	if (!response.ok) {
 		throw `API server request failed (status code ${response.status})`
