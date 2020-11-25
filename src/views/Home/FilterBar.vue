@@ -87,4 +87,8 @@ export default {
 	display: flex;
 	justify-content: flex-end;
 }
+
+.filter-bar > select {
+	margin-left: 2em;
+}
 </style>
