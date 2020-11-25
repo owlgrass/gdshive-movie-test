@@ -10,26 +10,15 @@
 		</div>
 		
 		<template v-else>
-			<div class="filters">
-				<vSelect 
-					v-model="inputs.selectedYear" 
-					:options="availableYears"
-					undefinedOptionName="all years"
-				/>
-				<vSelect 
-					v-model="inputs.selectedGenre" 
-					:options="availableGenres"
-					undefinedOptionName="all genres"
-				/>
-			</div>
-			<MovieGrid :movies="moviesFiltered" />
+			<FilterBar :allMovies="allMovies" @filter="movies = $event" />
+			<MovieGrid :movies="movies" />
 		</template>
 		
 	</div>
 </template>
 
 <script>
-import vSelect from './Home/vSelect'
+import FilterBar from './Home/FilterBar'
 import MovieGrid from './Home/MovieGrid'
 import fetchMovieData from './Home/fetchMovieData'
 
@@ -37,47 +26,12 @@ export default {
 	name: 'Home',
 	data() {
 		return {
-			inputs: {
-				selectedYear: undefined,
-				selectedGenre: undefined
-			},
 			status: {
 				loading: false,
 				error: false,
 			},
+			allMovies: [],
 			movies: []
-		}
-	},
-	computed: {
-		// Returns the Array of productionYear that is present in this.movies dataset
-		availableYears() {
-			const years = this.movies
-				.map(m => m.productionYear)
-				.sort((a,b) => a - b) // Sort in accending order (assumes year is Number)
-
-			return Array.from(new Set(years))	// Removes all duplicate years
-		},
-
-		// Returns the Array of genres that is present in this.movies dataset
-		availableGenres() {
-			const genres = this.movies.map(m => m.genre)
-
-			return Array.from(new Set(genres))	// Removes all duplicate years
-		},
-
-		// Returns the Array of movies after applying all filters, 
-		// this is displayed in the movie grid
-		moviesFiltered() {
-			let movies = this.movies
-
-			if (this.inputs.selectedYear) {
-				movies = movies.filter(m => m.productionYear == this.inputs.selectedYear)
-			}
-			if (this.inputs.selectedGenre) {
-				movies = movies.filter(m => m.genre == this.inputs.selectedGenre)
-			}
-
-			return movies
 		}
 	},
 	methods: {
@@ -85,14 +39,14 @@ export default {
 			this.status.loading = true
 
 			fetchMovieData()
-				.then(movies => this.movies = movies)
+				.then(movies => this.allMovies = movies)
 				.catch(error => {
 					this.status.error = error
 				})
 				.finally(() => this.status.loading = false)
 
 			// import('@/assets/test-data.json').then(data => {
-			// 	this.movies = data
+			// 	this.allMovies = data
 			// })
 		}
 	},
@@ -100,19 +54,16 @@ export default {
 		this.fetchData()
 	},
 	components: {
-		vSelect,
+		FilterBar,
 		MovieGrid
 	}
 }
 </script>
 
 <style scoped>
-.home > .filters {
-	padding: 1.5em;
-}
 
 .home > .loading {
-	padding: 1em;
+	padding: 1.5em;
 	animation: 500ms ease-in-out loading alternate infinite;
 }
 
@@ -122,7 +73,7 @@ export default {
 }
 
 .home > .error {
-	padding: 1em;
+	padding: 1.5em;
 	color: var(--danger-color);
 }
 
