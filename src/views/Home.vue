@@ -7,18 +7,23 @@
 			</p>
 		</header>
 
-
-		<div v-if="error" class="error">
-			<b>Error:</b> {{ this.error }}
+		<div>
+			<YearSelect v-model="inputs.selectedYear" :options="[2000, 2014]"/>
 		</div>
-		<div v-else-if="loading" class="loading">
+
+		<div v-if="status.error" class="error">
+			<b>Error:</b> {{ this.status.error }}
+		</div>
+		<div v-else-if="status.loading" class="loading">
 			Fetching movies...
 		</div>
 		<MovieGrid v-else :movies="movies" />
+
 	</div>
 </template>
 
 <script>
+import YearSelect from './Home/YearSelect'
 import MovieGrid from './Home/MovieGrid'
 import fetchMovieData from './Home/fetchMovieData'
 
@@ -26,21 +31,27 @@ export default {
 	name: 'Home',
 	data() {
 		return {
-			loading: false,
-			error: false,
+			inputs: {
+				selectedYear: undefined,
+				selectedGenre: undefined
+			},
+			status: {
+				loading: false,
+				error: false,
+			},
 			movies: []
 		}
 	},
 	methods: {
 		fetchData() {
-			this.loading = true
+			this.status.loading = true
 
 			fetchMovieData()
 				.then(movies => this.movies = movies)
 				.catch(error => {
-					this.error = error
+					this.status.error = error
 				})
-				.finally(() => this.loading = false)
+				.finally(() => this.status.loading = false)
 
 			// import('@/assets/test-data.json').then(data => {
 			// 	this.movies = data
@@ -51,6 +62,7 @@ export default {
 		this.fetchData()
 	},
 	components: {
+		YearSelect,
 		MovieGrid
 	}
 }
