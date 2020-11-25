@@ -4,6 +4,7 @@
  -->
 <template>
 	<select :value="value" @input="$emit('input', $event.target.value)">
+		<option :value="undefined">any year</option>
 		<option v-for="o in options" v-text="o" :key="o"></option>
 	</select>
 </template>
