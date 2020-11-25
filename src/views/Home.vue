@@ -1,13 +1,13 @@
 <template>
 	<div class="home">
 
-		<div v-if="status.error" class="error">
+		<LoadingError v-if="status.error">
 			<b>Error:</b> {{ this.status.error }}
-		</div>
+		</LoadingError>
 
-		<div v-else-if="status.loading" class="loading">
+		<LoadingBar v-else-if="status.loading">
 			Fetching movies...
-		</div>
+		</LoadingBar>
 		
 		<template v-else>
 			<FilterBar :allMovies="allMovies" @filter="movies = $event" />
@@ -18,6 +18,10 @@
 </template>
 
 <script>
+import fetchMovieData from '@/components/fetchMovieData'
+import LoadingBar from '@/components/LoadingBar'
+import LoadingError from '@/components/LoadingError'
+
 import FilterBar from './Home/FilterBar'
 import MovieGrid from './Home/MovieGrid'
 import fetchMovieData from './Home/fetchMovieData'
@@ -54,6 +58,8 @@ export default {
 		this.fetchData()
 	},
 	components: {
+		LoadingBar,
+		LoadingError,
 		FilterBar,
 		MovieGrid
 	}
@@ -61,20 +67,5 @@ export default {
 </script>
 
 <style scoped>
-
-.home > .loading {
-	padding: 1.5em;
-	animation: 500ms ease-in-out loading alternate infinite;
-}
-
-@keyframes loading {
-	from { opacity: 100%; }
-	to { opacity: 30%; }
-}
-
-.home > .error {
-	padding: 1.5em;
-	color: var(--danger-color);
-}
 
 </style>
