@@ -1,26 +1,30 @@
 <template>
 	<div class="home">
-		<header>
-			<vSelect 
-				v-model="inputs.selectedYear" 
-				:options="availableYears"
-				undefinedOptionName="all years"
-			/>
-			<vSelect 
-				v-model="inputs.selectedGenre" 
-				:options="availableGenres"
-				undefinedOptionName="all genres"
-			/>
-		</header>
 
 		<div v-if="status.error" class="error">
 			<b>Error:</b> {{ this.status.error }}
 		</div>
+
 		<div v-else-if="status.loading" class="loading">
 			Fetching movies...
 		</div>
-		<MovieGrid v-else :movies="moviesFiltered" />
-
+		
+		<template v-else>
+			<div class="filters">
+				<vSelect 
+					v-model="inputs.selectedYear" 
+					:options="availableYears"
+					undefinedOptionName="all years"
+				/>
+				<vSelect 
+					v-model="inputs.selectedGenre" 
+					:options="availableGenres"
+					undefinedOptionName="all genres"
+				/>
+			</div>
+			<MovieGrid :movies="moviesFiltered" />
+		</template>
+		
 	</div>
 </template>
 
@@ -103,8 +107,8 @@ export default {
 </script>
 
 <style scoped>
-.home > header {
-	padding: 1em;
+.home > .filters {
+	padding: 1.5em;
 }
 
 .home > .loading {
