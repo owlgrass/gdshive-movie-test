@@ -41,7 +41,6 @@ export default {
 				.then(movies => this.movies = movies)
 				.catch(error => {
 					this.error = error
-					console.error = error
 				})
 				.finally(() => this.loading = false)
 
