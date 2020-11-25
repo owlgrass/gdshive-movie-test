@@ -95,6 +95,10 @@ export default {
 
 
 .title {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+
 	font-size: 1.25em;
 
 	margin: 0 0 0.25em 0;
