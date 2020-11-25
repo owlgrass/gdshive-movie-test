@@ -24,7 +24,6 @@ import LoadingError from '@/components/LoadingError'
 
 import FilterBar from './Home/FilterBar'
 import MovieGrid from './Home/MovieGrid'
-import fetchMovieData from './Home/fetchMovieData'
 
 export default {
 	name: 'Home',
