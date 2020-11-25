@@ -42,7 +42,14 @@ export default {
 				.map(m => m.productionYear)
 				.sort((a,b) => a - b) // Sort in accending order (assumes year is Number)
 
-			return [...new Set(years)]	// Removes all duplicate years
+			return Array.from(new Set(years))	// Removes all duplicate years
+		},
+
+		// Returns the Array of genres that is present in this.movies dataset
+		availableGenres() {
+			const genres = this.movies.map(m => m.genre)
+
+			return Array.from(new Set(genres))	// Removes all duplicate years
 		},
 
 		// Returns the Array of movies after applying all filters, this is displayed in the grid
