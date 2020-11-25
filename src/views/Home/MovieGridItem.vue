@@ -10,7 +10,7 @@
 		</div>
 
 		<div class="descriptions">
-			<h2>{{ movie.name }}</h2>
+			<h2 class="title">{{ movie.name }}</h2>
 			<div class="tags">
 				<span v-text="movie.productionYear"></span>
 				<span v-text="movie.genre"></span>
@@ -49,8 +49,6 @@ export default {
 	/* Disable Android's blue highlight on touch */
 	-webkit-tap-highlight-color: transparent;
 
-	height: 10em;
-	width: 100%;
 	box-sizing: border-box;
 
 	/* Flush children to left and right */
@@ -71,7 +69,7 @@ export default {
 
 .image-container {
 	width: 5em;
-	height: 100%;
+	height: 7.5em;
 	background: repeating-linear-gradient(
 		45deg, 
 		var(--accent-color-light), var(--accent-color-light) 2px, 
@@ -96,11 +94,21 @@ export default {
 }
 
 
-
-
-h2 {
-	margin: 0;
+.title {
 	font-size: 1.25em;
+
+	margin: 0 0 0.25em 0;
+}
+
+.tags {
+	color: var(--main-color-disabled);
+	font-size: 0.8em;
+	text-transform: uppercase;
+
+	margin: 0 0 0.5em 0;
+}
+.tags > span {
+	margin-right: 1em;
 }
 
 .synopsis {
@@ -116,15 +124,11 @@ h2 {
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 3;
 
+	font-size: 0.9em;
+
 }
 
 
-.tags {
-	color: var(--main-color);
-}
-.tags span {
-	margin-right: 1em;
-}
 
 
 </style>

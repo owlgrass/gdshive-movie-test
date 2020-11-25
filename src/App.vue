@@ -15,9 +15,9 @@
 	--accent-color-light: hsl(180, 70%, 80%);
 	--accent-color-active: hsl(180, 60%, 50%);
 
-	--main-color-active: hsl(0, 0%, 50%);
+	--main-color-active: hsl(0, 0%, 0%);
 	--main-color: hsl(0, 0%, 10%);
-	--main-color-disabled: hsl(0, 0%, 95%);
+	--main-color-disabled: hsl(0, 0%, 50%);
 
 	--main-background: white;
 	
