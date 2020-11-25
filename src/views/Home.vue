@@ -1,7 +1,11 @@
 <template>
 	<div class="home">
 		<header>
-			<YearSelect v-model="inputs.selectedYear" :options="availableYears"/>
+			<vSelect 
+				v-model="inputs.selectedYear" 
+				:options="availableYears"
+				undefinedOptionName="all years"
+			/>
 		</header>
 
 		<div v-if="status.error" class="error">
@@ -16,7 +20,7 @@
 </template>
 
 <script>
-import YearSelect from './Home/YearSelect'
+import vSelect from './Home/vSelect'
 import MovieGrid from './Home/MovieGrid'
 import fetchMovieData from './Home/fetchMovieData'
 
@@ -83,7 +87,7 @@ export default {
 		this.fetchData()
 	},
 	components: {
-		YearSelect,
+		vSelect,
 		MovieGrid
 	}
 }
