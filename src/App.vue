@@ -20,6 +20,10 @@
 	--main-color-disabled: hsl(0, 0%, 95%);
 
 	--main-background: white;
+	
+	--success-color: hsl(90, 45%, 52%);
+	--warning-color: hsl(45, 60%, 55%);
+	--danger-color: hsl(0, 70%, 50%);
 
 	--box-shadow-hover:
 		0 5px 10px -3px hsla(0, 0%, 0%, .2), /* ambient shadow */
