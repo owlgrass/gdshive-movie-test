@@ -1,5 +1,16 @@
 <template>
-	<div class="detail-page">
+
+	<MovieFetcher 
+		v-if="allMovies.length === 0"
+		url="https://sometimes-maybe-flaky-api.gdshive.io/"
+		@fetch="allMovies = $event"
+	/>
+
+	<div v-else-if="!movie">
+		Movie not found
+	</div>
+
+	<div v-else class="detail-page">
 		<header>
 			<div>IMAGE</div>
 			<div class="title-block">
@@ -15,41 +26,29 @@
 			<section v-text="movie.synopsis" class="synopsis"></section>
 		</main>
 	</div>
+
 </template>
 
 <script>
-import fetchMovieData from '@/components/fetchMovieData'
+import MovieFetcher from '@/components/MovieFetcher'
 
 export default {
 	name: 'Detail',
 	data() {
 		return {
-			status: {
-				loading: false,
-				error: false
-			},
-			movie: {}
+			allMovies: []
 		}
 	},
-	methods: {
-		fetchData() {
-			this.status.loading = true
 
-			// NOTE: 
-			fetchMovieData('https://sometimes-maybe-flaky-api.gdshive.io/')
-				.then(movies => {
-					this.movie = movies.find(m => m.name === this.$route.params.movie)
-				})
-				.catch(error => {
-					this.status.error = error
-				})
-				.finally(() => this.status.loading = false)
+	// Note: In reality, if the list of movie is large, the API should be able to be queried for a single movie, instead of fetching all movies
+	computed: {
+		movie() {
+			if (this.allMovies.length === 0) return {}
+			return this.allMovies.find(m => m.name === this.$route.params.movie)
 		}
-	},
-	created() {
-		this.fetchData()
 	},
 	components: {
+		MovieFetcher
 	}
 }
 </script>
