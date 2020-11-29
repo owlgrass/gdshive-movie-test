@@ -81,7 +81,11 @@ export default {
 
 <style scoped>
 .filter-bar {
+	position: sticky;
+	top: 0;
+
 	padding: 1em 1.5em;
+	background: hsla(0, 100%, 100%, 0.9);
 
 	/* Flush children to the right */
 	display: flex;
