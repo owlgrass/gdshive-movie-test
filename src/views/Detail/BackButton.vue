@@ -31,8 +31,6 @@ export default {
 	cursor: pointer;
 	color: var(--main-color-disabled);
 	font-size: 2.25em;
-
-	transition: all 80ms ease-in;
 }
 
 
@@ -66,6 +64,8 @@ export default {
 	height: 1em;
 
 	background: hsla(0, 100%, 0%, 0.25);
+
+	transition: all 120ms ease-in;
 }
 
 .back-button:hover .back-button-icon {
