@@ -197,7 +197,7 @@ export default {
 }
 
 .detail-page > .md nav .back-button {
-	margin: 0.75em 0.25em;
+	margin: 0.75em 0;
 }
 
 .detail-page > .md nav .movie-cover {

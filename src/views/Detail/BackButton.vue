@@ -4,7 +4,8 @@
 		class="back-button"
 		to="/"
 	>
-		❮<!-- This will do for now... -->
+		<span class="back-button-icon"></span>
+		<span class="back-button-text">Back</span>
 	</RouterLink>
 </template>
 
@@ -24,42 +25,52 @@ export default {
 	padding: 0;
 	text-decoration: none;
 
-	display: inline-block;
-	color: var(--main-color-disabled);
-	font-size: 1.5em;
-	line-height: 1.5;
+	display: inline-flex;
+	align-items: center;
+
 	cursor: pointer;
+	color: var(--main-color-disabled);
+	font-size: 2.25em;
 
 	transition: all 80ms ease-in;
 }
 
-.back-button:after {
-	content: "back";
+
+
+.back-button .back-button-text {
 	opacity: 0;
 
-	/* Center vertically */
-	vertical-align: top;
-	line-height: 3;
-	font-size: 0.5em;
-
-	margin-left: 0.5em;
 	text-transform: uppercase;
+	font-size: 0.35em;
+	/*font-weight: bold;*/
 
-	transition: all 80ms ease-in;
+	transition: all 150ms ease-in;
 }
 
-.back-button:hover {
+.back-button:hover .back-button-text {
+	opacity: 1;
 	color: var(--accent-color);
 }
 
-.back-button:hover:after {
-	opacity: 1;
+.back-button:active .back-button-text {
+	color: var(--accent-color-active);
 }
 
 
 
-.back-button:active {
-	color: var(--accent-color-active);
+.back-button .back-button-icon {
+	mask: url('./back-button-icon.svg');
+	mask-size: contain;
+
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+
+	background: var(--main-color-disabled);
+}
+
+.back-button:hover .back-button-icon {
+	background: var(--accent-color);
 }
 
 </style>
