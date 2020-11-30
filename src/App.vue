@@ -4,9 +4,14 @@
 	</div>
 </template>
 
+<script>
+import 'normalize.css'
+export default {}
+</script>
+
 <style>
+
 /* Global CSS */
-@import "./lib/normalize.min.css";
 
 :root {
 
@@ -45,4 +50,6 @@ body {
 	color: var(--main-color);
 	background: var(--main-background);
 }
+
+
 </style>
