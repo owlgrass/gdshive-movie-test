@@ -5,9 +5,7 @@
 		:to="movie.name"
 	>
 
-		<div class="image-container">
-			<!-- TODO: image here -->
-		</div>
+		<MovieCover class="movie-cover" url="..."/>
 
 		<div class="descriptions">
 			<h2 class="title">{{ movie.name }}</h2>
@@ -22,6 +20,8 @@
 </template>
 
 <script>
+import MovieCover from '@/components/MovieCover'
+
 export default {
 	name: 'MovieGridItem',
 	props: {
@@ -34,6 +34,9 @@ export default {
 			
 		}
 	},
+	components: {
+		MovieCover
+	}
 }
 </script>
 
@@ -67,16 +70,8 @@ export default {
 }
 
 
-.image-container {
-	width: 5em;
-	height: 7.5em;
-	background: repeating-linear-gradient(
-		45deg, 
-		var(--accent-color-light), var(--accent-color-light) 2px, 
-		transparent 2px, transparent 4px
-	);
-
-	flex-shrink: 0; /* prevents width shrinking */
+.movie-cover {
+	flex-shrink: 0; /* prevents width from shrinking */
 }
 
 /* For non-touchscreen devices */
