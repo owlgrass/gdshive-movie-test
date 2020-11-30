@@ -76,7 +76,7 @@ export default {
 
 /* For non-touchscreen devices */
 @media (hover: hover) {
-	.movie-grid-item:hover .image-container {
+	.movie-grid-item:hover .movie-cover {
 		box-shadow: var(--box-shadow-hover);
 	}
 }
