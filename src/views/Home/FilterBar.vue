@@ -1,15 +1,13 @@
-
-
 <template>
 	<div class="filter-bar">
 		<vSelect 
 			v-model="inputs.selectedYear" 
-			:options="availableYears"
+			:options="allYears"
 			undefinedOptionName="all years"
 		/>
 		<vSelect 
 			v-model="inputs.selectedGenre" 
-			:options="availableGenres"
+			:options="allGenres"
 			undefinedOptionName="all genres"
 		/>
 	</div>
@@ -35,22 +33,18 @@ export default {
 		}
 	},
 	computed: {
-		// Returns the Array of productionYear that is present in this.allMovies dataset
-		availableYears() {
-			const years = this.allMovies
-				.map(m => m.productionYear)
-				.sort((a,b) => a - b) // Sort in accending order (assumes year is Number)
 
-			return Array.from(new Set(years))	// Removes all duplicate years
+		// Array of years present in this.allMovies, in accending order
+		allYears() {
+			return this.extractMovieProperty('productionYear').sort((a,b) => a - b)
 		},
 
-		// Returns the Array of genres that is present in this.allMovies dataset
-		availableGenres() {
-			const genres = this.allMovies.map(m => m.genre)
-
-			return Array.from(new Set(genres))	// Removes all duplicate years
+		// Array of genres present in this.allMovies
+		allGenres() {
+			return this.extractMovieProperty('genre')
 		},
 
+		// The filtered Array of movies
 		movies() {
 			let movies = this.allMovies
 
@@ -64,6 +58,17 @@ export default {
 			return movies
 		}
 
+	},
+	methods: {
+		// Extract all the values of the given key in this.allMovies, 
+		// removing any duplicate values
+		// eg. extractMovieProperty('productionYear') => [2001, 2010]
+		extractMovieProperty(key) {
+			const values = this.allMovies.map(m => m[key])
+			const unique = Array.from(new Set(values))
+
+			return unique
+		}
 	},
 	watch: {
 		movies: {
