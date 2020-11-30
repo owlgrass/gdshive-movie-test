@@ -1,34 +1,12 @@
 # gdshive-movie-test
 
-## Project setup
-```
-npm install
-```
+## Setup instructions
+This project was created with the Vue CLI.
++ Project setup: `npm install`
++ Compiles and hot-reloads for development: `npm run serve`
++ Compiles and minifies for production: `npm run build`
++ Lints and fixes files: `npm run lint`
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Directory structure
++ `/views`: page components and their specific dependencies
++ `/components`: common components used across multiple pages
