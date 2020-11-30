@@ -44,7 +44,7 @@ export default {
 	font-size: 0.35em;
 	/*font-weight: bold;*/
 
-	transition: all 150ms ease-in;
+	transition: all 120ms ease-in;
 }
 
 .back-button:hover .back-button-text {
@@ -66,7 +66,7 @@ export default {
 	width: 1em;
 	height: 1em;
 
-	background: var(--main-color-disabled);
+	background: hsla(0, 100%, 0%, 0.25);
 }
 
 .back-button:hover .back-button-icon {
