@@ -42,7 +42,6 @@ export default {
 
 	text-transform: uppercase;
 	font-size: 0.35em;
-	/*font-weight: bold;*/
 
 	transition: all 120ms ease-in;
 }
