@@ -8,7 +8,8 @@
 	<div>
 
 		<div v-if="error" class="loading-error">
-			<b>Error:</b> {{ this.error }}
+			<h1>Error</h1> 
+			<p>{{ this.error }}. Please refresh the page manually. </p>
 		</div>
 
 		<div v-if="!error && loading" class="loading">
