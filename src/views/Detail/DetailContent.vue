@@ -186,13 +186,14 @@ export default {
 .detail-page > .md > div {
 	display: flex;
 	justify-content: center;
+
+	margin: 1.5em 0;
 }
 
 .detail-page > .md nav > div {
 	position: sticky;
 	top: 0;
 	padding: 1.5em;
-	/*margin-right: 1.5em;*/
 }
 
 .detail-page > .md nav .back-button {
@@ -203,6 +204,13 @@ export default {
 	height: 15em;
 	width: 10em;
 }
+@media (min-width: 80ch) {
+	.detail-page > .md nav .movie-cover {
+		height: 18em;
+		width: 12em;
+	}
+}
+
 
 .detail-page > .md .content-group {
 	max-width: 65ch;
