@@ -1,16 +1,14 @@
 <template>
 	<div class="home">
 
+		<FilterBar :allMovies="allMovies" @filter="movies = $event" />
+
 		<MovieFetcher
 			v-if="allMovies.length === 0"
 			url="https://sometimes-maybe-flaky-api.gdshive.io/"
 			@fetch="allMovies = $event"
 		/>
-
-		<template v-else>
-			<FilterBar :allMovies="allMovies" @filter="movies = $event" />
-			<MovieGrid :movies="movies" />
-		</template>
+		<MovieGrid v-else :movies="movies" />
 		
 	</div>
 </template>

@@ -1,15 +1,23 @@
 <template>
 	<div class="filter-bar">
-		<vSelect 
-			v-model="inputs.selectedYear" 
-			:options="allYears"
-			undefinedOptionName="all years"
-		/>
-		<vSelect 
-			v-model="inputs.selectedGenre" 
-			:options="allGenres"
-			undefinedOptionName="all genres"
-		/>
+		<input 
+			type="text" 
+			v-model="inputs.search"
+			placeholder="search"
+			title="Search by title"
+		>
+		<div>
+			<vSelect 
+				v-model="inputs.selectedYear" 
+				:options="allYears"
+				undefinedOptionName="all years"
+			/>
+			<vSelect 
+				v-model="inputs.selectedGenre" 
+				:options="allGenres"
+				undefinedOptionName="all genres"
+			/>
+		</div>
 	</div>
 </template>
 
@@ -27,6 +35,7 @@ export default {
 	data() {
 		return {
 			inputs: {
+				search: '',
 				selectedYear: undefined,
 				selectedGenre: undefined
 			},
@@ -51,8 +60,17 @@ export default {
 			if (this.inputs.selectedYear) {
 				movies = movies.filter(m => m.productionYear == this.inputs.selectedYear)
 			}
+
 			if (this.inputs.selectedGenre) {
 				movies = movies.filter(m => m.genre == this.inputs.selectedGenre)
+			}
+
+			if (this.inputs.search) {
+				movies = movies.filter(m => {
+					const movieName = m.name.toLowerCase()
+					const search = this.inputs.search.toLowerCase()
+					return movieName.includes(search)
+				})
 			}
 
 			return movies
@@ -92,9 +110,9 @@ export default {
 	padding: 1em 1.5em;
 	background: hsla(0, 100%, 100%, 0.9);
 
-	/* Flush children to the right */
+	/* Flush children to left and right */
 	display: flex;
-	justify-content: flex-end;
+	justify-content: space-between;
 }
 
 .filter-bar > select {

@@ -9,7 +9,7 @@
 
 		<div v-if="error" class="loading-error">
 			<h1>Error</h1> 
-			<p>{{ this.error }}. Please refresh the page manually. </p>
+			<p>{{ this.error }}. Retrying... </p>
 		</div>
 
 		<div v-if="!error && loading" class="loading">
@@ -33,7 +33,9 @@ export default {
 	data() {
 		return {
 			loading: false,
-			error: false
+			error: false,
+			maxRetry: 3,
+			retryCount: 0
 		}
 	},
 	methods: {
@@ -41,9 +43,19 @@ export default {
 			this.loading = true
 
 			fetchMovieData(this.url)
-				.then(movies => this.$emit('fetch', movies))
-				.catch(error => this.error = error)
-				.finally(() => this.loading = false)
+				.then(movies => {
+					this.$emit('fetch', movies)
+					this.retryCount = 0
+					this.loading = false
+				})
+				.catch(error => {
+					// Try again if fail
+					this.error = error
+					if (this.retryCount < this.maxRetry) {
+						this.retryCount++
+						this.fetchData()
+					}
+				})
 		}
 	},
 	created() {
