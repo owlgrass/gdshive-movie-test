@@ -1,4 +1,5 @@
 # gdshive-movie-test
+Sample Vue.js project, demoing the design & development of a generic movie catalog website. 
 
 ## Setup instructions
 This project was created with the Vue CLI.
