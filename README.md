@@ -1,5 +1,7 @@
 # gdshive-movie-test
-Sample Vue.js project, demoing the design & development of a generic movie catalog section of a website. A list of movies and their information is fetched from a given API endpoint. It is then displayed in a grid on the homepage, which can be filtered by year and genre. Clicking on a movie in the grid brings up the detail page.
+Sample Vue.js project, demoing the design & development of a generic movie catalog section of a website. 
+
+A list of movies and their information is fetched from a given API endpoint. It is then displayed in a grid on the homepage, which can be filtered by year and genre. Clicking on a movie in the grid brings up the movie's detail page.
 
 
 ## Setup instructions
